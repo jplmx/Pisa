@@ -1,0 +1,47 @@
+p, ul, ol{
+	color: blue;
+	font-weight: bold;
+	font-size: 14pt;
+	font-family: courier;
+}
+
+.titulo36{
+	background: blue;
+	border-radius: 15px;
+	color: white;
+	font-size: 36pt;
+	width: 100%;
+}
+
+.titulo14{
+	background: blue;
+	border-radius: 15px;
+	color: white;
+	font-size: 14pt;
+	width: 100%;
+}
+
+.campo{
+	background: blue;
+	border-radius: 5px;
+	color: white;
+	font-size: 14pt;
+	font-weight: bold;
+	text-align: center;
+	width: 250px;
+}
+
+.boton{
+	background: blue;
+	color: white;
+	font-size: 14pt;
+	font-weight: bold;
+	width: 150px;
+	border-radius: 10px;
+}
+
+.boton:hover{
+	background: white;
+	color: blue;	
+}
+
