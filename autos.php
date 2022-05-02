@@ -25,9 +25,9 @@
 			$motor=$_GET['motor'];
 			// ************ Conectar el servidor y la base de datos
 			$cs=mysqli_connect("localhost","root","");
-			$cbd=mysqli_select_db($cs,"autos_prepa");
+			$cbd=mysqli_select_db($cs,"registro_pisa");
 			// ****************************************************
-			$query="INSERT INTO autos VALUES('$placas','$marca','$tipo','$color','$motor')";
+			$query="INSERT INTO puntajes VALUES('$placas','$marca','$tipo','$color','$motor')";
 			$sql=mysqli_query($cs,$query);
 			if (mysqli_affected_rows($cs)<0){
 				echo "
@@ -35,7 +35,7 @@
 					Error, las placas se duplican en la base de datos
 					</font>
 					<br><br>
-					<a href='http://localhost/autos/autos.php?op=0'>
+					<a href='http://localhost/pfinal/autos.php?op=0'>
 					Regresar
 					</a>
 				";
@@ -46,7 +46,7 @@
 					El registro ha sido grabado
 					</font>
 					<br><br>
-					<a href='http://localhost/autos/autos.php?op=0'>
+					<a href='http://localhost/pfinal/autos.php?op=0'>
 					Regresar
 					</a>
 				";
@@ -58,9 +58,9 @@
 			$placas=$_GET['placas'];
 			// ************ Conectar el servidor y la base de datos
 			$cs=mysqli_connect("localhost","root","");
-			$cbd=mysqli_select_db($cs,"autos_prepa");
+			$cbd=mysqli_select_db($cs,"registro_pisa");
 			// ****************************************************
-			$query="SELECT * FROM autos WHERE placas='$placas'";
+			$query="SELECT * FROM puntajes WHERE placas='$placas'";
 			$sql=mysqli_query($cs,$query);
 			$reg=mysqli_fetch_object($sql);
 			if ($reg==mysqli_fetch_array($sql)){
@@ -69,7 +69,7 @@
 					Error, las placas NO existen en la base de datos
 					</font>
 					<br><br>
-					<a href='http://localhost/autos/autos.php?op=0'>
+					<a href='http://localhost/pfinal/autos.php?op=0'>
 					Regresar
 					</a>
 				";
@@ -88,9 +88,9 @@
 			$placas=$_GET['placas'];
 			// ************ Conectar el servidor y la base de datos
 			$cs=mysqli_connect("localhost","root","");
-			$cbd=mysqli_select_db($cs,"autos_prepa");
+			$cbd=mysqli_select_db($cs,"registro_pisa");
 			// ****************************************************
-			$query="DELETE FROM autos WHERE placas='$placas'";
+			$query="DELETE FROM puntajes WHERE placas='$placas'";
 			$sql=mysqli_query($cs,$query);
 			if (mysqli_affected_rows($cs)<=0){
 				echo "
@@ -98,7 +98,7 @@
 					Error, las placas NO existen en la base de datos
 					</font>
 					<br><br>
-					<a href='http://localhost/autos/autos.php?op=0'>
+					<a href='http://localhost/pfinal/autos.php?op=0'>
 					Regresar
 					</a>
 				";
@@ -109,7 +109,7 @@
 					El registro ha sido eliminado
 					</font>
 					<br><br>
-					<a href='http://localhost/autos/autos.php?op=0'>
+					<a href='http://localhost/pfinal/autos.php?op=0'>
 					Regresar
 					</a>
 				";
@@ -119,9 +119,9 @@
 		function listado(){
 			// ************ Conectar el servidor y la base de datos
 			$cs=mysqli_connect("localhost","root","");
-			$cbd=mysqli_select_db($cs,"autos_prepa");
+			$cbd=mysqli_select_db($cs,"registro_pisa");
 			// ****************************************************
-			$query="SELECT * FROM autos";
+			$query="SELECT * FROM puntajes";
 			$sql=mysqli_query($cs,$query);
 			echo plantilla_formulario();
 
