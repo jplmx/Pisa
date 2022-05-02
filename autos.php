@@ -17,22 +17,22 @@
 		if ($op==4) listado();
 
 		function altas(){
-			global $op, $placas, $marca, $tipo, $color, $motor;
-			$placas=$_GET['placas'];
-			$marca=$_GET['marca'];
-			$tipo=$_GET['tipo'];
-			$color=$_GET['color'];
-			$motor=$_GET['motor'];
+			global $op, $folio, $nombre, $ap_pat, $ap_mat, $puntaje;
+			$folio=$_GET['folio'];
+			$nombre=$_GET['nombre'];
+			$ap_pat=$_GET['ap_pat'];
+			$ap_mat=$_GET['ap_mat'];
+			$puntaje=$_GET['puntaje'];
 			// ************ Conectar el servidor y la base de datos
 			$cs=mysqli_connect("localhost","root","");
 			$cbd=mysqli_select_db($cs,"registro_pisa");
 			// ****************************************************
-			$query="INSERT INTO puntajes VALUES('$placas','$marca','$tipo','$color','$motor')";
+			$query="INSERT INTO puntajes VALUES('$folio','$nombre','$ap_pat','$ap_mat','$puntaje')";
 			$sql=mysqli_query($cs,$query);
 			if (mysqli_affected_rows($cs)<0){
 				echo "
 					<font size='6' color='red'>
-					Error, las placas se duplican en la base de datos
+					Error, las folio se duplican en la base de datos
 					</font>
 					<br><br>
 					<a href='http://localhost/pfinal/autos.php?op=0'>
@@ -54,19 +54,19 @@
 		}
 
 		function consultas(){
-			global $op, $placas, $marca, $tipo, $color, $motor;
-			$placas=$_GET['placas'];
+			global $op, $folio, $nombre, $ap_pat, $ap_mat, $puntaje;
+			$folio=$_GET['folio'];
 			// ************ Conectar el servidor y la base de datos
 			$cs=mysqli_connect("localhost","root","");
 			$cbd=mysqli_select_db($cs,"registro_pisa");
 			// ****************************************************
-			$query="SELECT * FROM puntajes WHERE placas='$placas'";
+			$query="SELECT * FROM puntajes WHERE folio='$folio'";
 			$sql=mysqli_query($cs,$query);
 			$reg=mysqli_fetch_object($sql);
 			if ($reg==mysqli_fetch_array($sql)){
 				echo "
 					<font size='6' color='red'>
-					Error, las placas NO existen en la base de datos
+					Error, las folio NO existen en la base de datos
 					</font>
 					<br><br>
 					<a href='http://localhost/pfinal/autos.php?op=0'>
@@ -75,27 +75,27 @@
 				";
 			}
 			else{
-				$marca=$reg->marca;
-				$tipo=$reg->tipo;
-				$color=$reg->color;
-				$motor=$reg->motor;
+				$nombre=$reg->nombre;
+				$ap_pat=$reg->ap_pat;
+				$ap_mat=$reg->ap_mat;
+				$puntaje=$reg->puntaje;
 				formulario();
 			}
 		} // Termina función consultas
 
 		function bajas(){
 			global $op;
-			$placas=$_GET['placas'];
+			$folio=$_GET['folio'];
 			// ************ Conectar el servidor y la base de datos
 			$cs=mysqli_connect("localhost","root","");
 			$cbd=mysqli_select_db($cs,"registro_pisa");
 			// ****************************************************
-			$query="DELETE FROM puntajes WHERE placas='$placas'";
+			$query="DELETE FROM puntajes WHERE folio='$folio'";
 			$sql=mysqli_query($cs,$query);
 			if (mysqli_affected_rows($cs)<=0){
 				echo "
 					<font size='6' color='red'>
-					Error, las placas NO existen en la base de datos
+					Error, las folio NO existen en la base de datos
 					</font>
 					<br><br>
 					<a href='http://localhost/pfinal/autos.php?op=0'>
@@ -127,8 +127,8 @@
 
 			while ($reg=mysqli_fetch_object($sql)){
 				$plantilla=plantilla_formulario_datos();
-				//echo $reg->placas." ".$reg->marca." ".$reg->tipo." ".$reg->color." ".$reg->motor."<br>";
-				printf("$plantilla", "$reg->placas", "$reg->marca", "$reg->tipo", "$reg->color", "$reg->motor","<br>");
+				//echo $reg->folio." ".$reg->nombre." ".$reg->ap_pat." ".$reg->color." ".$reg->puntaje."<br>";
+				printf("$plantilla", "$reg->folio", "$reg->nombre", "$reg->ap_pat", "$reg->ap_mat", "$reg->puntaje","<br>");
 
 			}
 			//echo "<h1>Hola</h1>";
@@ -138,7 +138,7 @@
 
 
 		function formulario(){
-			global $op, $placas, $marca, $tipo, $color, $motor;
+			global $op, $folio, $nombre, $ap_pat, $ap_mat, $puntaje;
 			echo "
 				<br><br><br>
 				<form name='f_autos'>
@@ -147,24 +147,24 @@
 						<td colspan='2'><p class='titulo36'>Registro de de autos</p></td>
 					</tr>
 					<tr align='center'>
-						<td><p>Indica las placas del auto</p></td>
-						<td><input name='placas' type='text' class='campo' maxlength='7' value='$placas'></td>
+						<td><p>Indica las folio del auto</p></td>
+						<td><input name='folio' type='text' class='campo' maxlength='7' value='$folio'></td>
 					</tr>
 					<tr align='center'>
-						<td><p>Indica la marca del auto</p></td>
-						<td><input name='marca' type='text' class='campo' maxlength='20' value='$marca'></td>
+						<td><p>Indica la nombre del auto</p></td>
+						<td><input name='nombre' type='text' class='campo' maxlength='20' value='$nombre'></td>
 					</tr>
 					<tr align='center'>
-						<td><p>Indica el tipo del auto</p></td>
-						<td><input name='tipo' type='text' class='campo' maxlength='20' value='$tipo'></td>
+						<td><p>Indica el ap_pat del auto</p></td>
+						<td><input name='ap_pat' type='text' class='campo' maxlength='20' value='$ap_pat'></td>
 					</tr>
 					<tr align='center'>
 						<td><p>Indica el color del auto</p></td>
-						<td><input name='color' type='text' class='campo' maxlength='20' value='$color'></td>
+						<td><input name='ap_mat' type='text' class='campo' maxlength='20' value='$ap_mat'></td>
 					</tr>
 					<tr align='center'>
-						<td><p>Indica el tamaño del motor en CC</p></td>
-						<td><input name='motor' type='number' class='campo' maxlength='4' value='$motor'></td>
+						<td><p>Indica el tamaño del puntaje en CC</p></td>
+						<td><input name='puntaje' type='number' class='campo' maxlength='4' value='$puntaje'></td>
 					</tr>
 					<tr align='center'>
 						<td colspan='2'>
@@ -205,7 +205,7 @@
 						
 						<td><p>Color del auto</p></td>
 						
-						<td><p>Tamaño del motor en CC</p></td>
+						<td><p>Tamaño del puntaje en CC</p></td>
 						
 					</tr>
 					
@@ -216,11 +216,11 @@
 
 		function plantilla_formulario_datos(){
 			return "<tr>
-					<td><input name='placas' type='text' class='campo' maxlength='7' value='%s' readonly='true'></td>
-					<td><input name='marca' type='text' class='campo' maxlength='20' value='%s' readonly='true'></td>
-					<td><input name='tipo' type='text' class='campo' maxlength='20' value='%s' readonly='true'></td>
-					<td><input name='color' type='text' class='campo' maxlength='20' value='%s' readonly='true'></td>
-					<td><input name='motor' type='number' class='campo' maxlength='4' value='%s' readonly='true'></td>
+					<td><input name='folio' type='text' class='campo' maxlength='7' value='%s' readonly='true'></td>
+					<td><input name='nombre' type='text' class='campo' maxlength='20' value='%s' readonly='true'></td>
+					<td><input name='ap_pat' type='text' class='campo' maxlength='20' value='%s' readonly='true'></td>
+					<td><input name='ap_mat' type='text' class='campo' maxlength='20' value='%s' readonly='true'></td>
+					<td><input name='puntaje' type='number' class='campo' maxlength='4' value='%s' readonly='true'></td>
 					</tr>";
 		}
 		function plantilla_formulario_final(){
