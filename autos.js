@@ -28,25 +28,37 @@ function altas(op){
 		if (puntaje.length==0) document.f_autos.puntaje.style.background="red";
 	}
 	else{
-		if (folio.length!=7){
-			alert("Error, las folio deben tener 3 letras y 4 dígitos, 7 posiciones en total");
-			document.f_autos.folio.style.background="red";
+		if ((nombre.length<1)||(nombre.length>15)) {
+			alert("ERROR. El nombre debe tener entre 1 y 15 caracteres");
+			document.f_autos.nombre.style.background="red";
+			return;
 		}
-		else{
-			folio=folio.toUpperCase();
-			letras=folio.substr(0,3);
-			numeros=folio.substr(3,4);
+		if ((ap_pat.length<1)||(ap_pat.length>15)) {
+			alert("ERROR. El Apellido Paterno debe tener entre 1 y 15 caracteres");
+			document.f_autos.ap_pat.style.background="red";
+			return;
+		}
+		if ((ap_mat.length<1)||(ap_mat.length>15)) {
+			alert("ERROR. El Apellido Materno debe tener entre 1 y 15 caracteres");
+			document.f_autos.ap_mat.style.background="red";
+			return;
+		}
+		if ((folio.length!=5)||(folio.charAt(0)!='F')){
+			alert("Error, el folio debe tener 5 posiciones en total y debe empezar por F mayuscula");
+			document.f_autos.folio.style.background="red";
+			return;		
+		}
+		
+		
+			
 			//alert("letras="+letras+" numeros="+numeros);
 			//alert(isAlpha(letras));
 			//alert(isNumber(numeros));
-			if ((!isAlpha(letras)) || (!isNumber(numeros))){
-				alert("Error, las folio deben tener 3 letras y 4 dígitos, 7 posiciones en total");
-				document.f_autos.folio.style.background="red";
-			}
-			else{
+			
+			
 				puntaje=parseInt(puntaje);
-				if ((puntaje<1600) || (puntaje>4200)){
-					alert("Error, el tamaño del puntaje debe estar entre 1600 y 4200 CC");
+				if ((puntaje<1) || (puntaje>1200)){
+					alert("Error, el puntaje debe estar entre 1 y 1200");
 					document.f_autos.puntaje.style.background="red";
 				}
 				else{
@@ -56,8 +68,8 @@ function altas(op){
 					//alert(url);
 					location.href=url;
 				} // Valida tamaño del puntaje
-			} // Valida letras y núneros en las folio
-		} // Valida que las folio tengan 7 posiciones exactas
+			 // Valida letras y núneros en las folio
+		 // Valida que las folio tengan 7 posiciones exactas
 	} // Valida los campos obligatorios
 }
 
@@ -66,7 +78,7 @@ function consultas(op){
 	document.f_autos.folio.style.background="blue";
 	folio=folio.toUpperCase();
 	if (folio.length==0){
-		alert("Error, las folio son obligatorias para una consulta");
+		alert("Error, el folio es obligatorio para una consulta");
 		document.f_autos.folio.style.background="red";
 	}
 	else{
@@ -82,7 +94,7 @@ function bajas(op){
 	document.f_autos.folio.style.background="blue";
 	folio=folio.toUpperCase();
 	if (folio.length==0){
-		alert("Error, las folio son obligatorias para una baja");
+		alert("Error, el folio es obligatorio para una baja");
 		document.f_autos.folio.style.background="red";
 	}
 	else{

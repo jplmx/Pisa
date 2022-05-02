@@ -23,16 +23,20 @@
 			$ap_pat=$_GET['ap_pat'];
 			$ap_mat=$_GET['ap_mat'];
 			$puntaje=$_GET['puntaje'];
+			
+
 			// ************ Conectar el servidor y la base de datos
 			$cs=mysqli_connect("localhost","root","");
+
 			$cbd=mysqli_select_db($cs,"registro_pisa");
 			// ****************************************************
 			$query="INSERT INTO puntajes VALUES('$folio','$nombre','$ap_pat','$ap_mat','$puntaje')";
+			
 			$sql=mysqli_query($cs,$query);
 			if (mysqli_affected_rows($cs)<0){
 				echo "
 					<font size='6' color='red'>
-					Error, las folio se duplican en la base de datos
+					Error, el folio está duplicado en la base de datos
 					</font>
 					<br><br>
 					<a href='http://localhost/pfinal/autos.php?op=0'>
@@ -66,7 +70,7 @@
 			if ($reg==mysqli_fetch_array($sql)){
 				echo "
 					<font size='6' color='red'>
-					Error, las folio NO existen en la base de datos
+					Error, el folio NO existe en la base de datos
 					</font>
 					<br><br>
 					<a href='http://localhost/pfinal/autos.php?op=0'>
@@ -95,7 +99,7 @@
 			if (mysqli_affected_rows($cs)<=0){
 				echo "
 					<font size='6' color='red'>
-					Error, las folio NO existen en la base de datos
+					Error, el folio NO existe en la base de datos
 					</font>
 					<br><br>
 					<a href='http://localhost/pfinal/autos.php?op=0'>
@@ -144,26 +148,26 @@
 				<form name='f_autos'>
 				<table border='3' width='80%'>
 					<tr align='center'>
-						<td colspan='2'><p class='titulo36'>Registro de de autos</p></td>
+						<td colspan='2'><p class='titulo36'>Registro de Puntajes PISA</p></td>
 					</tr>
 					<tr align='center'>
-						<td><p>Indica las folio del auto</p></td>
+						<td><p>Indica el folio</p></td>
 						<td><input name='folio' type='text' class='campo' maxlength='7' value='$folio'></td>
 					</tr>
 					<tr align='center'>
-						<td><p>Indica la nombre del auto</p></td>
+						<td><p>Indica el nombre del aplicante</p></td>
 						<td><input name='nombre' type='text' class='campo' maxlength='20' value='$nombre'></td>
 					</tr>
 					<tr align='center'>
-						<td><p>Indica el ap_pat del auto</p></td>
+						<td><p>Indica el Ap. Paterno del aplicante</p></td>
 						<td><input name='ap_pat' type='text' class='campo' maxlength='20' value='$ap_pat'></td>
 					</tr>
 					<tr align='center'>
-						<td><p>Indica el color del auto</p></td>
+						<td><p>Indica el Ap. Materno del aplicante</p></td>
 						<td><input name='ap_mat' type='text' class='campo' maxlength='20' value='$ap_mat'></td>
 					</tr>
 					<tr align='center'>
-						<td><p>Indica el tamaño del puntaje en CC</p></td>
+						<td><p>Indica el puntaje del aplicante</p></td>
 						<td><input name='puntaje' type='number' class='campo' maxlength='4' value='$puntaje'></td>
 					</tr>
 					<tr align='center'>
@@ -190,22 +194,22 @@
 				<form name='f_autos'>
 				<table border='3' width='80%'>
 					<tr align='center'>
-						<td colspan='5'><p class='titulo36'>Registro de datos</p></td>
+						<td colspan='5'><p class='titulo36'>Registro de Puntajes de PISA</p></td>
 					</tr>
 					<tr align='center'>
 					
-						<td><p>Placas del auto</p></td>
+						<td><p>Folio</p></td>
 						
 					
 					
-						<td><p>Marca del auto</p></td>
+						<td><p>Nombre del aplicante</p></td>
 						
 					
-						<td><p>Tipo del auto</p></td>
+						<td><p>Ap. Paterno del aplicante</p></td>
 						
-						<td><p>Color del auto</p></td>
+						<td><p>Ap. Materno del aplicante</p></td>
 						
-						<td><p>Tamaño del puntaje en CC</p></td>
+						<td><p>Puntaje</p></td>
 						
 					</tr>
 					
