@@ -50,7 +50,7 @@ function altas(op){
 					document.f_autos.motor.style.background="red";
 				}
 				else{
-					url="http://localhost/autos/autos.php?op=1";
+					url="http://localhost/pfinal/autos.php?op=1";
 					url=url+"&placas="+placas+"&marca="+marca+"&tipo="+tipo;
 					url=url+"&color="+color+"&motor="+motor;
 					//alert(url);
@@ -70,7 +70,7 @@ function consultas(op){
 		document.f_autos.placas.style.background="red";
 	}
 	else{
-		url="http://localhost/autos/autos.php?op=2";
+		url="http://localhost/pfinal/autos.php?op=2";
 		url=url+"&placas="+placas;
 		//alert(url);
 		location.href=url;
@@ -86,7 +86,7 @@ function bajas(op){
 		document.f_autos.placas.style.background="red";
 	}
 	else{
-		url="http://localhost/autos/autos.php?op=3";
+		url="http://localhost/pfinal/autos.php?op=3";
 		url=url+"&placas="+placas;
 		//alert(url);
 		location.href=url;
@@ -94,6 +94,6 @@ function bajas(op){
 }
 
 function listado(){
-	url="http://localhost/autos/autos.php?op=4";
+	url="http://localhost/pfinal/autos.php?op=4";
 	location.href=url;
 }
